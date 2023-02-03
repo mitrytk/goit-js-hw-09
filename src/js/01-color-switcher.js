@@ -13,7 +13,7 @@ function onStartClick(evt) {
         refs.stopButtonEl.disabled = false;
     }
     refs.startButtonEl.disabled = true;
-    return interval = setInterval(() => {
+    return intervalBackground = setInterval(() => {
         addRandomBackgroundColor(refs.bodyEl);
     }, 1000);
 }
@@ -22,7 +22,7 @@ function onStopClick() {
         refs.startButtonEl.disabled = false;
     }
     refs.stopButtonEl.disabled = true;
-    clearInterval(interval);
+    clearInterval(intervalBackground);
 }
 function addRandomBackgroundColor(el) {
     el.style.backgroundColor = getRandomHexColor();
