@@ -12,7 +12,9 @@ const refs = {
     secondsFieldEl: document.querySelector('span[data-seconds]'),
 };
 addStyles();
+let timeoutIncluded = false;
 let selectedTime;
+let intervalID;
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -23,8 +25,11 @@ const options = {
         refs.startBtEl.disabled = true;
         Notiflix.Report.info('wrong date', "Please choose a date in the future", 'close');
         // window.alert("Please choose a date in the future");
-      } else {
+      } else{
+        clearInterval(intervalID);
+        timeoutIncluded = true;
         refs.startBtEl.disabled = false;
+
         selectedTime = selectedDates[0];
         refs.startBtEl.addEventListener('click', onStartTimeoutClick);
       }
