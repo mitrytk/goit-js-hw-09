@@ -3,17 +3,17 @@ const refs = {
     stopButtonEl: document.querySelector('button[data-stop]'),
     bodyEl: document.querySelector('body'),
 };
+let intervalId = null;
 
 refs.startButtonEl.addEventListener('click', onStartClick);
 refs.stopButtonEl.addEventListener('click', onStopClick);
-
 
 function onStartClick(evt) {
     if (refs.stopButtonEl.disabled) {
         refs.stopButtonEl.disabled = false;
     }
     refs.startButtonEl.disabled = true;
-    return intervalBackground = setInterval(() => {
+    intervalId = setInterval(() => {
         addRandomBackgroundColor(refs.bodyEl);
     }, 1000);
 }
@@ -22,7 +22,7 @@ function onStopClick() {
         refs.startButtonEl.disabled = false;
     }
     refs.stopButtonEl.disabled = true;
-    clearInterval(intervalBackground);
+    clearInterval(intervalId);
 }
 function addRandomBackgroundColor(el) {
     el.style.backgroundColor = getRandomHexColor();
