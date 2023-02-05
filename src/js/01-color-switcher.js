@@ -7,6 +7,7 @@ let intervalId = null;
 
 refs.startButtonEl.addEventListener('click', onStartClick);
 refs.stopButtonEl.addEventListener('click', onStopClick);
+console.log("HEEEEEEEEEEELP");
 
 function onStartClick(evt) {
     if (refs.stopButtonEl.disabled) {

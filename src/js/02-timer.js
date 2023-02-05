@@ -15,6 +15,8 @@ addStyles();
 let timeoutIncluded = false;
 let selectedTime;
 let intervalID;
+
+console.log(1);
 const options = {
     enableTime: true,
     time_24hr: true,
