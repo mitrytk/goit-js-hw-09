@@ -1,4 +1,4 @@
-// import Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 const refs = {
   delayFeldEl: document.querySelector('input[name="delay"]'),
   stepFeldEl: document.querySelector('input[name="step"]'),
@@ -16,20 +16,32 @@ function onCreateClick(evt) {
   let position = 1;
 
   setTimeout(() => {
-    setInterval(() => {
-      if (position <= amount) {
-        createPromise(position, delay)
+    if (amount !== 0) {
+      createPromise(position, delay)
         .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-          // Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
         })
         .catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-          // Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+          // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+          Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         })
-        position += 1;
-      }
-    }, delay)
+
+      setInterval(() => {
+        if (position <= amount - 1) {
+          createPromise(position, delay)
+          .then(({ position, delay }) => {
+            // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+            Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          })
+          .catch(({ position, delay }) => {
+            // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+            Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+          })
+          position += 1;
+        }
+      }, delay)
+    }
   }, firstDelay);
 }
 function createPromise(position, delay) {
