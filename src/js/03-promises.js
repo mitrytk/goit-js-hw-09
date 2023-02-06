@@ -26,9 +26,9 @@ function onCreateClick(evt) {
           // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
           Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         })
-
+        position += 1;
       setInterval(() => {
-        if (position <= amount - 1) {
+        if (position <= amount) {
           createPromise(position, delay)
           .then(({ position, delay }) => {
             // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
